@@ -41,13 +41,13 @@ const (
 	TypeConfigMissingOK = "config|missingok"
 	// TypeGhost is the type of an RPM ghost file which is ignored by other packagers.
 	TypeRPMGhost = "ghost"
-	// TypeRPMDoc is the type of an RPM doc file which is ignored by other packagers.
+	// TypeRPMDoc is the type of an RPM doc file which is treated as a regular file by other packagers.
 	TypeRPMDoc = "doc"
-	// TypeRPMLicence is the type of an RPM licence file which is ignored by other packagers.
+	// TypeRPMLicence is the type of an RPM licence file which is treated as a regular file by other packagers.
 	TypeRPMLicence = "licence"
 	// TypeRPMLicense a different spelling of TypeRPMLicence.
 	TypeRPMLicense = "license"
-	// TypeRPMReadme is the type of an RPM readme file which is ignored by other packagers.
+	// TypeRPMReadme is the type of an RPM readme file which is treated as a regular file by other packagers.
 	TypeRPMReadme = "readme"
 	// TypeDebChangelog is the type of a Debian changelog archive file which is
 	// ignored by other packagers. This type should never be set for a content
@@ -331,10 +331,10 @@ func isRelevantForPackager(packager string, content *Content) bool {
 		return false
 	}
 
-	if packager != "rpm" &&
-		(content.Type == TypeRPMDoc || content.Type == TypeRPMLicence ||
-			content.Type == TypeRPMLicense || content.Type == TypeRPMReadme ||
-			content.Type == TypeRPMGhost) {
+	// Intentionally pass through TypeRPMDoc, TypeRPMLicen[cs]e, and TypeRPMReadme.
+	// It's convenient to install them without the extra type info with other packagers,
+	// instead of having to duplicate the entries in config without the type info.
+	if packager != "rpm" && content.Type == TypeRPMGhost {
 		return false
 	}
 
