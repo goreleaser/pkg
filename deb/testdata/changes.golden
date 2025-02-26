@@ -1,0 +1,22 @@
+Format: 1.8
+Date: Mon, 30 Jan 2023 08:36:31 +0300
+Source: foo
+Binary: foo
+Architecture: amd64
+Version: 1.0.0
+Distribution: unstable
+Urgency: medium
+Maintainer: Carlos A Becker <pkg@carlosbecker.com>
+Changed-By: Carlos A Becker <pkg@carlosbecker.com>
+Description: Foo does things
+Bugs: https://github.com/goreleaser/nfpm/issues
+Changes:
+ foo (1.0.0) unstable; urgency=medium
+  * Package created with nFPM
+Checksums-Sha256:
+ 039058c6f2c0cb492c533b0a4d14ef77cc0f78abccced5287d84a1a2011cfb81 3 foo_1.0.0_amd64.deb
+Checksums-Sha1:
+ 7037807198c22a7d2b0807371d763779a84fdfcf 3 foo_1.0.0_amd64.deb
+Files:
+ 5289df737df57326fcdd22597afb1fac 3 default extra foo_1.0.0_amd64.deb
+
